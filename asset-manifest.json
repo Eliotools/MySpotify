@@ -1,13 +1,16 @@
 {
   "files": {
-    "main.css": "/MySpotify/static/css/main.5ff66dc5.css",
-    "main.js": "/MySpotify/static/js/main.ccc132f1.js",
+    "main.css": "/MySpotify/static/css/main.073c9b0a.css",
+    "main.js": "/MySpotify/static/js/main.bf76703e.js",
+    "static/js/787.28cb0dcd.chunk.js": "/MySpotify/static/js/787.28cb0dcd.chunk.js",
+    "static/media/logo.svg": "/MySpotify/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/MySpotify/index.html",
-    "main.5ff66dc5.css.map": "/MySpotify/static/css/main.5ff66dc5.css.map",
-    "main.ccc132f1.js.map": "/MySpotify/static/js/main.ccc132f1.js.map"
+    "main.073c9b0a.css.map": "/MySpotify/static/css/main.073c9b0a.css.map",
+    "main.bf76703e.js.map": "/MySpotify/static/js/main.bf76703e.js.map",
+    "787.28cb0dcd.chunk.js.map": "/MySpotify/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5ff66dc5.css",
-    "static/js/main.ccc132f1.js"
+    "static/css/main.073c9b0a.css",
+    "static/js/main.bf76703e.js"
   ]
 }
