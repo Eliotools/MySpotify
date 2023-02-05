@@ -1,22 +1,35 @@
 import { useNavigate } from "react-router-dom";
-import { Button } from '@mui/material';
-import queryString from 'query-string';
-import { useEffect, useState } from 'react';
+import { Button, TextField } from '@mui/material';
+import { useEffect, useMemo, useState } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 
 import { theme } from '../constant/colors';
-import { env } from '../constant/config';
 import { getUserInfo } from '../API/login';
 import "../constant/style.css"
 
+const scope = [
+  "user-read-playback-state",
+  "user-read-playback-state",
+  "user-modify-playback-state",
+  "user-read-recently-played"
+].join(' ')
+
+const redirect = "https://eliotools.github.io/MySpotify/"
+//const redirect = "http://localhost:3000/MySpotify/"
+
 export const Home = () => {
   const [token, setToken] = useState()
+  const [clientId, setClientId] = useState("")
   const navigate = useNavigate();
-  const url = queryString.parse(window.location.href.split('#')[1])
-
+  const url = useMemo(() => new URL(window.location.href), [] )
   useEffect(() => {
-    if (url.access_token)
-      setToken(url.access_token)
+    if (url.searchParams.get('clientid'))
+      OpenNav(url.searchParams.get('clientid'))
+    if (url.hash){
+        const hash = url.hash.split('=')[1].split('&')[0]
+        setToken(hash)
+      }
+    return
   }, [url])
 
   useEffect(() => {
@@ -25,11 +38,15 @@ export const Home = () => {
 
     const getInfo = async () => {
       const res = await getUserInfo(token)
-      console.log(res)
-      navigate(`/Main/${res.display_name}`)
+      navigate(`Main/${res.display_name}&${token}`)
     }
     getInfo()
   })
+
+  const OpenNav = (clientId) => {
+    window.open(`https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirect}&response_type=token&scope=${scope}`, "_self")
+  }
+
 
   return (
     <div className="container flex">
@@ -39,7 +56,8 @@ export const Home = () => {
         <div className='separator'></div>
         <p>Please connect yourself</p>
         <ThemeProvider theme={theme}>
-          <Button variant="outlined" color="primary" onClick={() => window.open(`https://accounts.spotify.com/authorize?client_id=${env.CLIENT_ID}&redirect_uri=${env.URI}/&response_type=token&scope=user-read-recently-played`, "_self")}>Connect</Button>
+          <TextField label="Client Id" variant="filled" color="primary" focused style={{margin : 20}} value={clientId} onChange={(e) => setClientId(e.target.value)}/>
+          <Button variant="outlined" color="primary" onClick={() => OpenNav(clientId)}>Connect</Button>
         </ThemeProvider>
       </div>
     </div>

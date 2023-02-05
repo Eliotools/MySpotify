@@ -58,9 +58,51 @@ html, body {
 .main {
     color: #2D232E;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
+.lisen {
+    padding-top: 10px;
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    box-shadow: 0px 2px 5px 2px;
+}
+
+img {
+    height: 100px;
+    width: 100px;
+}
+
+.reload {
+    position: absolute;
+    top : 10px;
+    left : 10px;
+}
+
+.playlist {
+    display : flex;
+    flex-direction: column;
+    height: 40%;
+    overflow: scroll;
+    background-color: white;
+    box-shadow: 2px 0px 5px 2px;
+    border-radius: 10px;
+    padding : 10px
+}
+
+.item-list {
+    border-bottom: 1px #2D232E solid;
+    display: flex;
+    padding-top: 10px;
+}
 /* 
 #474448
 #2D232E 

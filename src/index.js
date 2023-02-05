@@ -9,19 +9,19 @@ import { Main } from './routes/Main';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/MySpotify/",
     element: <Home />,
   },
   {
-    path: "Main/:username",
+    path: "/MySpotify/Main/:username",
     element: <Main />,
   },
-]);
+], window.location.pathname || '');
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-     <RouterProvider router={router} />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
