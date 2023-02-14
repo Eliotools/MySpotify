@@ -1,4 +1,4 @@
-import { env } from "../constant/config"
+import { env } from "./constant/config"
 import queryString from "query-string"
 
 //SERVER SIDE
@@ -76,4 +76,65 @@ export const getPlaylist = (token) => {
         },
 
     }).then(res => res.json().then(res => res))
+}
+
+
+export const startPlay = async (token, deviceId, songUri) => {
+    let body = typeof(songUri) === "string" ? {context_uri : songUri} : {uris : songUri}
+    body.position_ms = 0
+    const url = `https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`
+    return fetch(url, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify(body)
+    }).then(res => res.status)
+}
+
+export const startPlayQueue = async (token, deviceId, songUri) => {
+    const url = `https://api.spotify.com/v1/me/player/queue?uri=${songUri}&device_id=${deviceId}`
+    return fetch(url, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+        }
+    }).then(res => res.status)
+}
+
+export const getQueue = async (token) => {
+    const url = `https://api.spotify.com/v1/me/player/queue`
+    return fetch(url, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+        }
+    }).then(res => res.json().then(res => res))
+}
+
+
+export const getTrack = async (token, deviceId) => {
+    const url = `https://api.spotify.com/v1/me/playlists`
+    return fetch(url, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+        }
+    }).then(res => res.json().then(res => res))
+}
+
+export const SearchDate = async (token, date) => {
+    const url = `https://api.spotify.com/v1/search?q=${date}&type=track&include_external=audio&limit=5`
+    return fetch(url, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+        }
+    }).then(res => res.json().then(res => res))
+ 
 }

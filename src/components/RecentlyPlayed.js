@@ -1,22 +1,40 @@
+import { useEffect, useState } from "react"
+import { getPlaylist } from "../API.js"
 
-export const RecentlyPlayed = ({ info }) => {
-    if (info === undefined)
-        return
+export const RecentlyPlayed = ({ playSong, Token }) => {
+
+    const [info, setInfo] = useState()
+    const [hidden, setHidden] = useState(false)
+
+
+    useEffect(() => {
+        const loadAsync = async () => {
+            const list = await getPlaylist(Token)
+            setInfo(list)
+
+            setTimeout(() => loadAsync(), 60000)
+        }
+
+        loadAsync()
+    }, [Token])
+
 
     return (
-        <div className='playlist'>
-            LAST PLAYED
-            {info.items.map(item => {
+        <div className={'playlist ' + (hidden ? ' hidden' : null)}>
+            <p onClick={() => setHidden(!hidden)}>LAST PLAYED</p>
+            <div className="scroll">
+            {info !== undefined ? info.items.map((item, index) => {
                 return (
-                    <div className='item-list'>
+                    <div className='item-list' onClick={(e) => playSong(item.track)} key={index}>
                         <img src={item.track.album.images[0].url} alt='album'></img>
-                        <p style={{paddingLeft : "10px"}}>
+                        <div style={{ paddingLeft: "10px" }}>
                             <p>{item.track.name}</p>
                             <p>{item.track.artists ? item.track.artists[0].name : null}</p>
-                        </p>
                         </div>
+                    </div>
                 )
-            })}
+            }) : null}
         </div>
+        </div >
     )
 }
