@@ -8,10 +8,10 @@ export const Queue = ({ playSong, Token }) => {
 
     useEffect(() => {
         const loadAsync = async () => {
-            const list = await getQueue(Token)
+            const list = await getQueue(Token).then(res => res.error ? [] : res.queue)
             setInfo(list)
 
-            setTimeout(() => loadAsync(), 6000)
+            setTimeout(() => loadAsync(), 30000)
         }
 
         loadAsync()
@@ -19,10 +19,11 @@ export const Queue = ({ playSong, Token }) => {
 
 
     return (
-        <div className={'playlist ' + (hidden ? ' hidden' : null)}>
+        <div hidden className={'playlist ' + (hidden ? ' hidden' : null)}>
             <p onClick={() => setHidden(!hidden)}>QUEUE</p>
+            {hidden ? null : <>
             <div className="scroll">
-                {info ? info.queue.map((item, index) => {
+                {info ? info.map((item, index) => {
                     return (
                         <div className='item-list' onClick={() => playSong(item)} key={index}>
                             <img src={item.album.images[0].url} alt='album'></img>
@@ -33,7 +34,7 @@ export const Queue = ({ playSong, Token }) => {
                         </div>
                     )
                 }) : null}
-            </div>
+            </div> </>}
         </div>
     )
 }

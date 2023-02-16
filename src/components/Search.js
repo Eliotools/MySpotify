@@ -19,7 +19,7 @@ export const Search = ({ playSong, Token }) => {
     return (
         <div className={'playlist ' + (hidden ? ' hidden' : null)}>
             <p onClick={() => setHidden(!hidden)}>SEARCH</p>
-            <div className={"flex" + (hidden ? ' show' : null)}>
+            <div className={'flex ' + (hidden ? ' show' : null)}>
                 <TextField variant="filled" focused style={{ margin: 20 }} value={search} onChange={(e) => handleSearch(e)} />
                 <Select placeholder="Type" value={type} onChange={(e) => setType(e.target.value)}>
                     <MenuItem value={'track'}>Track</MenuItem>

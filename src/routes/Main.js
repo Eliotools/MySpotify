@@ -104,13 +104,14 @@ export const Main = () => {
                 </IconButton>
                 <Button onClick={() => playPlaylist()}>Playlist</Button>
                 <Button onClick={() => playDate()}>Get now date</Button>
-                <Played info={played ? played.item : null}></Played>
                 <p hidden={error}>Aucun device connecter</p>
                 <div className="list-container">
                     <RecentlyPlayed playSong={playSong} Token={Token}></RecentlyPlayed>
                     <Queue playSong={playSong} Token={Token}></Queue>
                     <Search playSong={playSong} Token={Token} ></Search>
                 </div>
+                <Played info={played ? played.item : null}></Played>
+
                 <MySnackbar open={alert.open} text={alert.text}></MySnackbar>
             </div>
         </>

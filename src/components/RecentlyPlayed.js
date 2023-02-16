@@ -9,9 +9,8 @@ export const RecentlyPlayed = ({ playSong, Token }) => {
 
     useEffect(() => {
         const loadAsync = async () => {
-            const list = await getPlaylist(Token)
+            const list = await getPlaylist(Token).then(res => res.error ? [] : res.items)
             setInfo(list)
-
             setTimeout(() => loadAsync(), 60000)
         }
 
@@ -23,7 +22,7 @@ export const RecentlyPlayed = ({ playSong, Token }) => {
         <div className={'playlist ' + (hidden ? ' hidden' : null)}>
             <p onClick={() => setHidden(!hidden)}>LAST PLAYED</p>
             <div className="scroll">
-            {info !== undefined ? info.items.map((item, index) => {
+            {info !== undefined ? info.map((item, index) => {
                 return (
                     <div className='item-list' onClick={(e) => playSong(item.track)} key={index}>
                         <img src={item.track.album.images[0].url} alt='album'></img>

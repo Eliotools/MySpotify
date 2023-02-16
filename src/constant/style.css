@@ -96,13 +96,13 @@ img {
     z-index: 10;
     display: flex;
     flex-direction: column;
-    height: 30%;
+    height: 60vh;
     width: 30%;
     background-color: white;
     box-shadow: 2px 0px 5px 2px;
     border-radius: 10px;
     padding: 10px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .scroll {
@@ -143,7 +143,7 @@ img {
 #F1F0EA
 */
 
-@media only screen and (max-width: 600px) {
+@media   screen and (max-width: 600px) {
     .main {
         color: #2D232E;
         display: flex;
@@ -162,7 +162,7 @@ img {
         z-index: 10;
         display: flex;
         flex-direction: column;
-        height: 30%;
+        height: 69vh;
         width: 80%;
         background-color: white;
         box-shadow: 2px 0px 5px 2px;
@@ -170,4 +170,15 @@ img {
         padding: 10px;
         margin-top: 20px;
     }
+    .hidden {
+        height: 40px;
+    }
+    
+    .show {
+        display: none
+    }  
+    .list-container {
+        display: flex;
+        width: 100%;
+    } 
 }
