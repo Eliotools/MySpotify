@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     height: 100%;
     width: 100%;
     overflow: hidden;
@@ -6,7 +7,7 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color : white
+    color: white
 }
 
 
@@ -30,20 +31,23 @@ html, body {
     height: 80%;
     width: 80%;
     border-radius: 2%;
-    border: solid black 1px ;
+    border: solid black 1px;
     background-color: #2D232E;
-    color : white;
+    color: white;
 
 }
 
 
 .xl {
-    font-size: 1.875rem; /* 30px */
-    line-height: 2.25rem; /* 36px */
+    font-size: 1.875rem;
+    /* 30px */
+    line-height: 2.25rem;
+    /* 36px */
 }
 
 .xxl {
-    font-size: 4.5rem; /* 72px */
+    font-size: 4.5rem;
+    /* 72px */
     line-height: 1;
 }
 
@@ -60,7 +64,6 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: scroll;
 }
 
 .lisen {
@@ -84,27 +87,27 @@ img {
 
 .reload {
     position: absolute;
-    top : 10px;
-    left : 10px;
-    color : black
+    top: 10px;
+    left: 10px;
+    color: black
 }
 
 .playlist {
     z-index: 10;
-    display : flex;
+    display: flex;
     flex-direction: column;
     height: 30%;
     width: 30%;
     background-color: white;
     box-shadow: 2px 0px 5px 2px;
     border-radius: 10px;
-    padding : 10px;
+    padding: 10px;
     margin-top: 20px;
 }
 
 .scroll {
     height: 90%;
-    overflow: scroll;
+    overflow-y: scroll;
 
 }
 
@@ -119,7 +122,7 @@ img {
 }
 
 .list-container {
-    display : flex;
+    display: flex;
     justify-content: space-evenly;
     width: 100%;
 }
@@ -127,6 +130,11 @@ img {
 .hidden {
     height: 40px;
 }
+
+.show {
+    display: none
+}
+
 /* 
 #474448
 #2D232E 
@@ -134,3 +142,32 @@ img {
 #534B52
 #F1F0EA
 */
+
+@media only screen and (max-width: 600px) {
+    .main {
+        color: #2D232E;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-y: scroll;
+    }
+
+    .list-container {
+        color: #2D232E;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .playlist {
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        height: 30%;
+        width: 80%;
+        background-color: white;
+        box-shadow: 2px 0px 5px 2px;
+        border-radius: 10px;
+        padding: 10px;
+        margin-top: 20px;
+    }
+}

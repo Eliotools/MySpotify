@@ -10,6 +10,7 @@ import PauseIcon from '@mui/icons-material/Pause';
 import StopIcon from '@mui/icons-material/Stop';
 import { Queue } from "../components/Queue";
 import { MySnackbar } from "../components/Alert";
+import { Search } from "../components/Search";
 
 export const Main = () => {
     const query = window.location.href.split('/')[5].replace('%20', ' ')
@@ -108,6 +109,7 @@ export const Main = () => {
                 <div className="list-container">
                     <RecentlyPlayed playSong={playSong} Token={Token}></RecentlyPlayed>
                     <Queue playSong={playSong} Token={Token}></Queue>
+                    <Search playSong={playSong} Token={Token} ></Search>
                 </div>
                 <MySnackbar open={alert.open} text={alert.text}></MySnackbar>
             </div>

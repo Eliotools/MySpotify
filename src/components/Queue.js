@@ -11,7 +11,7 @@ export const Queue = ({ playSong, Token }) => {
             const list = await getQueue(Token)
             setInfo(list)
 
-            setTimeout(() => loadAsync(), 60000)
+            setTimeout(() => loadAsync(), 6000)
         }
 
         loadAsync()

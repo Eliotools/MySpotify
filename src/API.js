@@ -127,8 +127,8 @@ export const getTrack = async (token, deviceId) => {
     }).then(res => res.json().then(res => res))
 }
 
-export const SearchDate = async (token, date) => {
-    const url = `https://api.spotify.com/v1/search?q=${date}&type=track&include_external=audio&limit=5`
+export const SearchDate = async (token, string) => {
+    const url = `https://api.spotify.com/v1/search?q=${string}&type=track&include_external=audio&limit=5`
     return fetch(url, {
         method: 'GET',
         headers: {
@@ -137,4 +137,15 @@ export const SearchDate = async (token, date) => {
         }
     }).then(res => res.json().then(res => res))
  
+}
+
+export const SearchItem = async (token, string, type) => {
+    const url = `https://api.spotify.com/v1/search?q=${string}&type=${type}&include_external=audio&limit=20`
+    return fetch(url, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+        }
+    }).then(res => res.json().then(res => res))
 }
