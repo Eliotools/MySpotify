@@ -1,16 +1,12 @@
-import { Button, IconButton } from "@mui/material"
+import { Button } from "@mui/material"
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom";
 import { Played } from "../components/Played"
 import { LetPlay, getInfo, startPlay, startPlayQueue, getTrack, SearchDate } from "../API"
 import { RecentlyPlayed } from "../components/RecentlyPlayed";
-import Switch from '@mui/material/Switch';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import PauseIcon from '@mui/icons-material/Pause';
-import StopIcon from '@mui/icons-material/Stop';
 import { Queue } from "../components/Queue";
 import { MySnackbar } from "../components/Alert";
 import { Search } from "../components/Search";
+import { Header } from "../components/Header";
 
 export const Main = () => {
     const query = window.location.href.split('/')[5].replace('%20', ' ')
@@ -18,8 +14,7 @@ export const Main = () => {
     const [played, setPlayed] = useState()
     const [error, setError] = useState(true)
     const [type, setType] = useState(false)
-    const [alert, setalert] = useState({open : false, text : ''})
-    const navigate = useNavigate(null);
+    const [alert, setalert] = useState({ open: false, text: '' })
 
     useEffect(() => {
         const loadAsync = async () => {
@@ -68,7 +63,7 @@ export const Main = () => {
 
     const playDate = async () => {
         const date = new Date()
-        const res = await (SearchDate(Token, `${date.getHours()}:${date.getMinutes().toString().length === 1 ? `0${date.getMinutes()}` : date.getMinutes() }`)).then(res => res.tracks.items)
+        const res = await (SearchDate(Token, `${date.getHours()}:${date.getMinutes().toString().length === 1 ? `0${date.getMinutes()}` : date.getMinutes()}`)).then(res => res.tracks.items)
         if (res.length === 0)
             return
         const random = Math.floor(Math.random() * res.length);
@@ -80,35 +75,27 @@ export const Main = () => {
 
     const handleAlert = (song, type) => {
         setalert({
-            open : true,
-            text : `${song} juste ${type === 'play' ? 'start' : 'add to queue'}`
+            open: true,
+            text: `${song} juste ${type === 'play' ? 'start' : 'add to queue'}`
         })
-        setTimeout(() => {setalert({open : false, text : ''})}, 10000)
+        setTimeout(() => { setalert({ open: false, text: '' }) }, 10000)
     }
 
 
     return (
         <>
-            <div className='reload'>
-                <Button onClick={() => navigate(`/MySpotify?clientid=ce54a352d2be4cf59e6de5180c7a351c`)}>Reload Token</Button>
-                <Switch value={type} onChange={() => setType(!type)} />
-                {type ? 'Play' : 'Queue'}
-            </div>
+            <Header switch={setType} CallDevice={CallDevice} played={played}></Header>
             <div className='main container'>
-                <IconButton onClick={async () => await CallDevice()}>
-                    {
-                        played ? played.actions ?
-                            played.actions.disallows.pausing ? <PlayArrowIcon /> : <PauseIcon />
-                            : <StopIcon /> : <StopIcon />
-                    }
-                </IconButton>
-                <Button onClick={() => playPlaylist()}>Playlist</Button>
-                <Button onClick={() => playDate()}>Get now date</Button>
+                <div className='flex'>
+                    <Button onClick={() => playPlaylist()}>Playlist</Button>
+                    <Button onClick={() => playDate()}>Play now date</Button>
+                </div>
                 <p hidden={error}>Aucun device connecter</p>
+
                 <div className="list-container">
                     <RecentlyPlayed playSong={playSong} Token={Token}></RecentlyPlayed>
-                    <Queue playSong={playSong} Token={Token}></Queue>
                     <Search playSong={playSong} Token={Token} ></Search>
+                    <Queue playSong={playSong} Token={Token}></Queue>
                 </div>
                 <Played info={played ? played.item : null}></Played>
 
