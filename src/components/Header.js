@@ -4,13 +4,14 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import StopIcon from '@mui/icons-material/Stop';
 import { useState } from "react";
-export const Header = ({ setType, CallDevice, played }) => {
+export const Header = ({ switchType, CallDevice, played }) => {
     const [localType, setLocalType] = useState(false)
     const navigate = useNavigate(null);
 
     const handleType = () => {
         setLocalType(!localType)
-        setType(!localType)
+        switchType(!localType)
+        console.log(!localType)
     }
     return (
         <div className='header'>

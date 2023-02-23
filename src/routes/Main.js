@@ -30,6 +30,10 @@ export const Main = () => {
     }, [Token])
 
 
+    useEffect(() => {
+        console.log('type => ', type)
+    },[type])
+
 
     const CallDevice = async () => {
         if (!played)
@@ -84,7 +88,7 @@ export const Main = () => {
 
     return (
         <>
-            <Header switch={setType} CallDevice={CallDevice} played={played}></Header>
+            <Header switchType={setType} CallDevice={CallDevice} played={played}></Header>
             <div className='main container'>
                 <div className='flex'>
                     <Button onClick={() => playPlaylist()}>Playlist</Button>
