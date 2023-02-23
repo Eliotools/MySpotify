@@ -90,7 +90,7 @@ export const Main = () => {
                     <Button onClick={() => playPlaylist()}>Playlist</Button>
                     <Button onClick={() => playDate()}>Play now date</Button>
                 </div>
-                <p hidden={error}>Aucun device connecter</p>
+                <p hidden={error}>Aucun device connecter<br/>Lancer une music sur spotify</p>
 
                 <div className="list-container">
                     <RecentlyPlayed playSong={playSong} Token={Token}></RecentlyPlayed>

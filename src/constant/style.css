@@ -196,5 +196,8 @@ img {
     .list-container {
         display: flex;
         width: 100%;
+    }
+    .playlist:last-child {
+        margin-bottom: 10%;
     } 
 }
