@@ -17,21 +17,21 @@ const scope = [
 ].join(' ')
 
 const redirect = "https://eliotools.github.io/MySpotify/"
-//const redirect = "http://localhost:3000/MySpotify/"
+// const redirect = "http://localhost:3000/MySpotify/"
 
 export const Home = () => {
   const [token, setToken] = useState()
   const [clientId, setClientId] = useState("")
   const navigate = useNavigate();
-  const url = useMemo(() => new URL(window.location.href), [] )
+  const url = useMemo(() => new URL(window.location.href), [])
 
   useEffect(() => {
     if (url.searchParams.get('clientid'))
       OpenNav(url.searchParams.get('clientid'))
-    if (url.hash){
-        const hash = url.hash.split('=')[1].split('&')[0]
-        setToken(hash)
-      }
+    if (url.hash) {
+      const hash = url.hash.split('=')[1].split('&')[0]
+      setToken(hash)
+    }
     return
   }, [url])
 
@@ -59,7 +59,7 @@ export const Home = () => {
         <div className='separator'></div>
         <p>Please connect yourself</p>
         <ThemeProvider theme={theme}>
-          <TextField label="Client Id" variant="filled" color="primary" focused style={{margin : 20}} value={clientId} onChange={(e) => setClientId(e.target.value)}/>
+          <TextField label="Client Id" variant="filled" color="primary" focused style={{ margin: 20 }} value={clientId} onChange={(e) => setClientId(e.target.value)} />
           <Button variant="outlined" color="primary" onClick={() => OpenNav(clientId)}>Connect</Button>
         </ThemeProvider>
       </div>

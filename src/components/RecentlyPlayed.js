@@ -20,20 +20,20 @@ export const RecentlyPlayed = ({ playSong, Token }) => {
 
     return (
         <div className={'playlist ' + (hidden ? ' hidden' : null)}>
-            <p onClick={() => setHidden(!hidden)}>LAST PLAYED</p>
+            <p className={"title"} onClick={() => setHidden(!hidden)}>LAST PLAYED</p>
             <div className="scroll">
-            {info !== undefined ? info.map((item, index) => {
-                return (
-                    <div className='item-list' onClick={(e) => playSong(item.track)} key={index}>
-                        <img src={item.track.album.images[0].url} alt='album'></img>
-                        <div style={{ paddingLeft: "10px" }}>
-                            <p>{item.track.name}</p>
-                            <p>{item.track.artists ? item.track.artists[0].name : null}</p>
+                {info !== undefined ? info.map((item, index) => {
+                    return (
+                        <div className='item-list' onClick={(e) => playSong(item.track)} key={index}>
+                            <img src={item.track.album.images[0].url} alt='album'></img>
+                            <div style={{ paddingLeft: "10px" }}>
+                                <p>{item.track.name}</p>
+                                <p>{item.track.artists ? item.track.artists[0].name : null}</p>
+                            </div>
                         </div>
-                    </div>
-                )
-            }) : null}
-        </div>
+                    )
+                }) : null}
+            </div>
         </div >
     )
 }

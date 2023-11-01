@@ -1,6 +1,7 @@
-import { MenuItem, Select, TextField } from "@mui/material"
+import { MenuItem, Select, TextField, InputAdornment } from "@mui/material"
 import { useState } from "react"
 import { SearchItem } from "../API.js"
+import SearchIcon from '@mui/icons-material/Search';
 
 export const Search = ({ playSong, Token }) => {
 
@@ -18,13 +19,23 @@ export const Search = ({ playSong, Token }) => {
 
     return (
         <div className={'playlist ' + (hidden ? ' hidden' : null)}>
-            <p onClick={() => setHidden(!hidden)}>SEARCH</p>
+            <p className={"title"} onClick={() => setHidden(!hidden)}>SEARCH</p>
             <div className={'flex ' + (hidden ? ' show' : null)}>
-                <TextField variant="filled" focused style={{ margin: 20 }} value={search} onChange={(e) => handleSearch(e)} />
-                <Select placeholder="Type" value={type} onChange={(e) => setType(e.target.value)}>
-                    <MenuItem value={'track'}>Track</MenuItem>
-                    <MenuItem value={'album'}>Album</MenuItem>
-                </Select>
+                <TextField
+                    style={{ background: "rgb(22, 22, 22)", borderRadius: "5%" }}
+                    variant="standard"
+                    value={search}
+                    onChange={(e) => handleSearch(e)}
+                    label="What do you want to listen to ?"
+                    color="secondary"
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <SearchIcon color="secondary" />
+                            </InputAdornment>
+                        ),
+                    }}
+                />
             </div>
             <div className="scroll">
                 {info.length !== 0 ? info.map((item, index) => {

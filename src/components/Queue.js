@@ -20,7 +20,7 @@ export const Queue = ({ playSong, Token }) => {
 
     return (
         <div hidden className={'playlist ' + (hidden ? ' hidden' : null)}>
-            <p onClick={() => setHidden(!hidden)}>QUEUE</p>
+            <p className={"title"} onClick={() => setHidden(!hidden)}>QUEUE</p>
             {hidden ? null : <>
             <div className="scroll">
                 {info ? info.map((item, index) => {

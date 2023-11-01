@@ -29,12 +29,6 @@ export const Main = () => {
         loadAsync()
     }, [Token])
 
-
-    useEffect(() => {
-        console.log('type => ', type)
-    },[type])
-
-
     const CallDevice = async () => {
         if (!played)
             return
@@ -47,34 +41,15 @@ export const Main = () => {
     }
 
     const playSong = async (track) => {
-        const func = type ? startPlay : startPlayQueue
+        const func = startPlayQueue
 
-        if (!played)
+        if (!played) {
             return
+
+        }
         await func(Token, played.device.id, [track.uri])
         handleAlert(track.name, type ? 'play' : 'queu')
 
-    }
-
-    const playPlaylist = async () => {
-        const list = await getTrack(Token).then(res => res.items[1].uri)
-
-        if (!played)
-            return
-        await startPlay(Token, played.device.id, list)
-        handleAlert('your playlist', 'play')
-    }
-
-    const playDate = async () => {
-        const date = new Date()
-        const res = await (SearchDate(Token, `${date.getHours()}:${date.getMinutes().toString().length === 1 ? `0${date.getMinutes()}` : date.getMinutes()}`)).then(res => res.tracks.items)
-        if (res.length === 0)
-            return
-        const random = Math.floor(Math.random() * res.length);
-        if (!played)
-            return
-        await startPlay(Token, played.device.id, [res[random].uri])
-        handleAlert(res[random].name, 'play')
     }
 
     const handleAlert = (song, type) => {
@@ -90,11 +65,8 @@ export const Main = () => {
         <>
             <Header switchType={setType} CallDevice={CallDevice} played={played}></Header>
             <div className='main container'>
-                <div className='flex'>
-                    <Button onClick={() => playPlaylist()}>Playlist</Button>
-                    <Button onClick={() => playDate()}>Play now date</Button>
-                </div>
-                <p hidden={error}>Aucun device connecter<br/>Lancer une music sur spotify</p>
+          
+                <p hidden={error}>Aucun device connecter<br />Lancer une music sur spotify</p>
 
                 <div className="list-container">
                     <RecentlyPlayed playSong={playSong} Token={Token}></RecentlyPlayed>
