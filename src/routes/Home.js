@@ -16,8 +16,8 @@ const scope = [
   "playlist-read-private"
 ].join(' ')
 
-// const redirect = "https://eliotools.github.io/MySpotify/"
-const redirect = "http://localhost:3000/MySpotify/"
+const redirect = "https://eliotools.github.io/MySpotify/"
+// const redirect = "http://localhost:3000/MySpotify/"
 
 export const Home = () => {
   const [token, setToken] = useState()

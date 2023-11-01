@@ -1,6 +1,5 @@
 import { useState } from "react";
 export const Header = () => {
-    const [localType, setLocalType] = useState(false)
 
     return (
         <div className='header'>
