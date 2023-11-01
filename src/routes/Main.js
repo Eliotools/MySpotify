@@ -1,7 +1,6 @@
-import { Button } from "@mui/material"
 import { useEffect, useState } from "react"
 import { Played } from "../components/Played"
-import { LetPlay, getInfo, startPlay, startPlayQueue, getTrack, SearchDate } from "../API"
+import { LetPlay, getInfo, startPlayQueue } from "../API"
 import { RecentlyPlayed } from "../components/RecentlyPlayed";
 import { Queue } from "../components/Queue";
 import { MySnackbar } from "../components/Alert";
@@ -62,21 +61,19 @@ export const Main = () => {
 
 
     return (
-        <>
+        <div className='main container'>
             <Header switchType={setType} CallDevice={CallDevice} played={played}></Header>
-            <div className='main container'>
-          
-                <p hidden={error}>Aucun device connecter<br />Lancer une music sur spotify</p>
 
-                <div className="list-container">
-                    <RecentlyPlayed playSong={playSong} Token={Token}></RecentlyPlayed>
-                    <Search playSong={playSong} Token={Token} ></Search>
-                    <Queue playSong={playSong} Token={Token}></Queue>
-                </div>
-                <Played info={played ? played.item : null}></Played>
+            <p hidden={error}>Aucun device connecter<br />Lancer une music sur spotify</p>
 
-                <MySnackbar open={alert.open} text={alert.text}></MySnackbar>
+            <div className="list-container">
+                <RecentlyPlayed playSong={playSong} Token={Token}></RecentlyPlayed>
+                <Search playSong={playSong} Token={Token} ></Search>
+                <Queue playSong={playSong} Token={Token}></Queue>
             </div>
-        </>
+            <Played info={played ? played.item : null}></Played>
+
+            <MySnackbar open={alert.open} text={alert.text}></MySnackbar>
+        </div>
     )
 }

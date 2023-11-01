@@ -1,4 +1,4 @@
-import { MenuItem, Select, TextField, InputAdornment } from "@mui/material"
+import { TextField, InputAdornment } from "@mui/material"
 import { useState } from "react"
 import { SearchItem } from "../API.js"
 import SearchIcon from '@mui/icons-material/Search';
@@ -6,7 +6,6 @@ import SearchIcon from '@mui/icons-material/Search';
 export const Search = ({ playSong, Token }) => {
 
     const [info, setInfo] = useState([])
-    const [type, setType] = useState('track')
     const [search, setSearch] = useState('')
     const [hidden, setHidden] = useState(false)
 
